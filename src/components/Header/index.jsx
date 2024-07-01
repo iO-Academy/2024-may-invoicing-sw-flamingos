@@ -11,15 +11,17 @@ export default function Header() {
 }, [])
     )
 
-    return (
-        function UnpaidCounter() {
-            data.map(invoice.status === "2" && setUnpaid(unpaid + 1)
+    function UnpaidCounter() {
+        data.map(invoice.status === "2" && setUnpaid(unpaid + 1)
+        )
+        console.log(unpaid)
+    }
 
-            )
-        }
+    return (
+        
         <header>
            <h1>Invoices</h1> 
            <p>There are {unpaid} unpaid invoices</p>
-        </header>
+    </header>
     )
 }
