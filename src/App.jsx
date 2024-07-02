@@ -1,13 +1,17 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import InvoiceList from "./components/InvoiceList";
-export default function App() {
+    import { BrowserRouter, Route, Routes } from "react-router-dom";
+    import Home from "./pages/Home";
+    import Footer from "./components/Footer";
+    import Header from "./components/Header";
 
-  return (
-    <>
-        <Header />
-        <Footer/>
-        <InvoiceList />
-    </>
-  )
-}
+    export default function App() {
+
+    return (
+        <BrowserRouter>
+          <Header />
+            <Routes>
+                <Route path="/" element={<Home />}></Route>
+            </Routes>
+          <Footer/>
+        </BrowserRouter>
+    )
+    }
