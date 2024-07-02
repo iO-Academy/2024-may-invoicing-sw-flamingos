@@ -1,5 +1,9 @@
-export default function InvoiceSummary({invoiceID, invoiceTotal, invoiceName, invoiceStatus, invoiceDue}) {
+import StatusBox from "../StatusBox";
 
+
+export default function InvoiceSummary({invoiceID, invoiceTotal, invoiceName, invoiceStat, invoiceDue}) {
+    console.log(invoiceStat)
+    console.log(invoiceID)
     return (
         <div className="text-sm flex flex-col relative mx-10 my-2 p-4 bg-white box-border w-full border-2 border-grey min-[760px]:max-w-[850px] min-[760px]:flex-row">
             <div className="flex flex-col justify-between min-[760px]:justify-around min-[760px]:flex-row ">
@@ -12,8 +16,8 @@ export default function InvoiceSummary({invoiceID, invoiceTotal, invoiceName, in
                     <p className="text-lg font-bold ">£{invoiceTotal}</p>
                 </span>
             </div>
-            <span className="flex flex-row justify-end absolute right-4 bottom-5 min-[760px]:justify-between ">
-                <p>invoice status: {invoiceStatus}</p> 
+            <span className="flex flex-row justify-end absolute right-4 bottom-2 min-[760px]:justify-between ">
+                <StatusBox invoiceDue={invoiceDue} invoiceStatus={invoiceStat}/> 
             </span>
         </div>
     )
