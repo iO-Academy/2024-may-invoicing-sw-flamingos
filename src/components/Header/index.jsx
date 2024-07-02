@@ -16,15 +16,8 @@ export default function Header() {
                     invoice.status === "2" && counter ++
                 })
                 setUnpaid(counter)
-            })}, [])
-
-
-    /* function unpaidCounter() {
-         data.map((invoice) => {
-                invoice.status === "2" && setUnpaid(unpaid + 1)
-         })
-         console.log(unpaid)
-     } */
+                })
+                    }, [])
 
     return (
 
