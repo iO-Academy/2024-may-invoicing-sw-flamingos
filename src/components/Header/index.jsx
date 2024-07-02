@@ -21,8 +21,8 @@ export default function Header() {
 
     return (
 
-        <header>
-            <h1>Invoices</h1>
+        <header className="bg-slate-50 p-4">
+            <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>
             <p>There are {unpaid} unpaid invoices</p>
         </header>
     )
