@@ -18,7 +18,7 @@ export default function InvoiceList() {
         <>
             {invoices.map(invoice => {
                             return (
-                            <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStatus={invoice.status} invoiceDue={invoice.due} />
+                            <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStatus={invoice.status_name} invoiceDue={invoice.due} />
                             )
             })}
 
