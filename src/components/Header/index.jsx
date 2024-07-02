@@ -2,14 +2,11 @@ import { useEffect, useState } from "react"
 
 export default function Header() {
     const [unpaid, setUnpaid] = useState(0)
-    const [data, setData] = useState([])
 
     useEffect(() => {
         fetch('https://invoicing-api.dev.io-academy.uk/invoices')
             .then(res => res.json())
             .then((invoices) => {
-                setData(invoices.data)
-
                 let counter = 0
 
                 invoices.data.forEach((invoice) => {
