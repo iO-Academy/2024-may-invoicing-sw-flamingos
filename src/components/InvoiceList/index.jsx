@@ -15,13 +15,13 @@ export default function InvoiceList() {
     }, [])
 
     return (
-        <>
+        <div className="flex flex-col items-center px-16">
             {invoices.map(invoice => {
                             return (
                             <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStatus={invoice.status_name} invoiceDue={invoice.due} />
                             )
             })}
 
-        </>
+        </div>
     )
 }
