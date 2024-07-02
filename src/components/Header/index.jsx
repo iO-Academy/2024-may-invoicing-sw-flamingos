@@ -23,7 +23,7 @@ export default function Header() {
 
         <header className="bg-slate-50 p-4">
             <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>
-            <p>There are {unpaid} unpaid invoices</p>
+            <p className="pb-3 text-l text-slate-500" >There are {unpaid} unpaid invoices</p>
         </header>
     )
 }
