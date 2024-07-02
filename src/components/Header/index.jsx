@@ -7,6 +7,7 @@ export default function Header() {
         fetch('https://invoicing-api.dev.io-academy.uk/invoices')
             .then(res => res.json())
             .then((invoices) => {
+
                 let counter = 0
 
                 invoices.data.forEach((invoice) => {
