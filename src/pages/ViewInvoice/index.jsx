@@ -28,6 +28,7 @@ export default function ViewInvoice(){
 
     return(
         <>
+            <InvoiceTitle invoiceID='test' />
         </>
 )
 }
