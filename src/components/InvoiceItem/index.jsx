@@ -1,4 +1,6 @@
 import { useState } from "react"
+import PlusInvoiceItem from "../PlusInvoiceItem"
+import MinusInvoiceItem from "../MinusInvoiceItem"
 
 export default function InvoiceItem() {
 
@@ -20,17 +22,25 @@ export default function InvoiceItem() {
 
     return (
         <div className="flex ">
-            <textarea placeholder="description" className="w-[200px] h-[100px]"/>
+            <textarea placeholder="description" className="w-[200px] h-[100px]" />
 
-            <input onChange={quantity} type="number" step="1" placeholder="quantity"/>
+            <input onChange={quantity} type="number" step="1" placeholder="quantity" />
 
             <div className="flex flex-wrap items-stretch w-[150px] mb-4 relative">
                 <div className="flex -mr-px">
                     <span className="flex items-center leading-normal bg-grey-lighter rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">£</span>
                 </div>
-                <input onChange={rate} type="number" className="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border h-10 border-grey-light rounded rounded-l-none px-3 relative focus:border-blue focus:shadow" placeholder="Rate"/>
+                <input onChange={rate} type="number" className="flex-shrink flex-grow leading-normal w-px border h-10 border-grey-light rounded rounded-l-none px-3 relative focus:border-blue focus:shadow" placeholder="Rate" />
             </div>
-            <p>{total}</p>
+            <p>Total: {total}</p>
+            <div className="pl-2">
+                <div>
+                    <PlusInvoiceItem />
+                </div>
+                <div>
+                    <MinusInvoiceItem />
+                </div>
+            </div>
         </div>
     )
 }
