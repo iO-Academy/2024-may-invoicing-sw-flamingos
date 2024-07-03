@@ -17,7 +17,7 @@ export default function Header() {
                     }, [])
 
     return (
-        <header className="bg-slate-50 p-4">
+        <header className="bg-slate-50 p-4 pl-16">
             <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>
             <p className="pb-3 text-slate-500" >There are {unpaid} unpaid invoices</p>
         </header>

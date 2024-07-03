@@ -5,6 +5,7 @@ const todaysDate = new Date()
 let day = todaysDate.getDate()
 const year = todaysDate.getFullYear()
 let month = todaysDate.getMonth()
+month = month + 1
 if (day < 10) {
     day = `0${day}`
 }
