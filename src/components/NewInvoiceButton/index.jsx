@@ -4,7 +4,7 @@ export default function NewInvoiceButton() {
 
     return (
         <div>
-            <Link to='/NewInvoice'><i class="fa-solid fa-square-plus"></i> New Invoice</Link>
+            <Link to='/NewInvoice'><i className="fa-solid fa-square-plus"></i> New Invoice</Link>
         </div>
     )
 }

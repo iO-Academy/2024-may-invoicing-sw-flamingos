@@ -1,20 +1,53 @@
 import { useEffect, useState } from "react"
+import DropdownClients from "../DropdownClients";
 
 export default function NewInvoiceDetails() {
 
-    const todaysDate = new Date()
-    todaysDate = todaysDate.toString()
-    const ourAddress = 'bogus address'
+    const now = new Date();
+    const next30Days = now.getTime() + 30 * 24 * 60 * 60 * 1000;
+    const next30DaysDate = new Date(next30Days);
+    const formattedDueDate = next30DaysDate.toLocaleDateString('en-uk');
+    const formattedDate = now.toLocaleDateString('en-uk')
 
-    console.log(todaysDate)
+    const [clients, setClients] = useState([])
+
+    useEffect(() => {
+        fetch('https://invoicing-api.dev.io-academy.uk/clients')
+            .then(res => res.json())
+            .then(clientList => {
+                setClients(clientList.data)
+            }
+            )
+    }, [])
 
     return (
-        <div>
-            <p>{ourAddress}</p>
-            <p>client dropdown</p>
-            {/* <ul className="border border-yellow-400 rounded-lg"><li className="py-1 px-3 text-yellow-400">&#x2022; Pending</li></ul> */}
-            <p>{todaysDate}</p>
-            <p>date due</p>
+        <div className="flex">
+            <div>
+                <div>
+                    <p>IO Academy</p>
+                    <p>1 Widcombe Cres</p>
+                    <p>Bath</p>
+                    <p>BA2 6AH</p>
+                </div>
+                <div>
+                    <p>To</p>
+                    <DropdownClients clients={clients} />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p>Status</p>
+                    <ul className="border border-yellow-400 rounded-lg"><li className="py-1 px-3 text-yellow-400">&#x2022; Pending</li></ul>
+                </div>
+                <div>
+                    <p>Created</p>
+                    <p>{formattedDate}</p>
+                </div>
+                <div>
+                    <p>Due</p>
+                    <p>{formattedDueDate}</p>
+                </div>
+            </div>
         </div>
     )
 }
