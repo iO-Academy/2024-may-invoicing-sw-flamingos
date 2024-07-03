@@ -5,7 +5,7 @@ export default function InvoiceTitle({invoiceID}) {
     return (
         <div>
             <p>Invoice #{invoiceID}</p>
-            <Link to='/' ><i class="fa-solid fa-xmark"></i></Link>
+            <Link to='/' ><i className="fa-solid fa-xmark"></i></Link>
         </div>
     )
 }
