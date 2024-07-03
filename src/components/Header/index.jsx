@@ -10,11 +10,11 @@ export default function Header() {
                 let counter = 0
 
                 invoices.data.forEach((invoice) => {
-                    invoice.status === "2" && counter ++
+                    invoice.status === "2" && counter++
                 })
                 setUnpaid(counter)
-                })
-                    }, [])
+            })
+    }, [])
 
     return (
         <header className="bg-slate-50 p-4 pl-16">
