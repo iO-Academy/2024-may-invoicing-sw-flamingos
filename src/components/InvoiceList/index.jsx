@@ -5,11 +5,12 @@ export default function InvoiceList() {
 
     const [invoices, setInvoices] = useState([])
     useEffect(() => {
-        fetch('https://invoicing-api.dev.io-academy.uk/invoices').then(res => res.json()).then(
-            invoiceData => {
+        fetch('https://invoicing-api.dev.io-academy.uk/invoices')
+            .then(res => res.json())
+            .then(invoiceData => {
                 setInvoices(invoiceData.data)
             }
-        )
+            )
     }, [])
 
     return (
