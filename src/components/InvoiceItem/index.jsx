@@ -33,14 +33,6 @@ export default function InvoiceItem() {
                 <input onChange={rate} type="number" className="flex-shrink flex-grow leading-normal w-px border h-10 border-grey-light rounded rounded-l-none px-3 relative focus:border-blue focus:shadow" placeholder="Rate" />
             </div>
             <p>Total: {total}</p>
-            <div className="pl-2">
-                <div>
-                    <PlusInvoiceItem />
-                </div>
-                <div>
-                    <MinusInvoiceItem />
-                </div>
-            </div>
         </div>
     )
 }
