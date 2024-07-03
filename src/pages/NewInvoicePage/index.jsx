@@ -1,9 +1,10 @@
+import NewInvoiceDetails from "../../components/NewInvoiceDetails";
 
 export default function NewInvoicePage() {
 
     return (
         <div>
-            <p>test</p>
+            <NewInvoiceDetails />
         </div>
     )
 }
