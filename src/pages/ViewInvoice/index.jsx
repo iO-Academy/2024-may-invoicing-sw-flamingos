@@ -18,6 +18,7 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
     const [rate, setRate] = useState('')
     const [total, setTotal] = useState('')
     const [paidToDate, setPaidToDate] = useState('')
+    const [data, setData] = useState([])
 
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${invoiceid}`)
@@ -29,8 +30,18 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
                 setCity(invoice.data.city)
                 setDateCreated(invoice.data.created)
                 setDateDue(invoice.data.due)
+                setDescription(invoice.data.details.description)
+                setData(invoice.data.details)
+                {data.map(invoice => {
+                    return (
+                        <p key={invoice.id} invoiceDescription={data.description} invoiceQuantity={data.quantity} invoiceSubTotal={data.total} invoiceRate={data.rate} />
+                    )
+                })}
             })
-    }, [])
+            
+
+    }, []
+)
 
     return (
         <>
@@ -56,6 +67,20 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
                     <p>{dateDue}</p>
                 </div>
             </section>
+
+            <section className="flex justify-self-stretch px-3 gap-4 border-b">
+                
+                <div className="flex flex-col">
+                    <p className="font-bold">Description</p>
+                    <p className="flex flex-col items-center px-16 bg-slate-50">
+            
+        </p>
+                    
+                </div>
+
+            
+            </section>
+            
         </>
     )
 }
