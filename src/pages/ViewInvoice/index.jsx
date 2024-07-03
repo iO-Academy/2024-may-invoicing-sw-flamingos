@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import InvoiceTitle from "../../components/InvoiceTitle";
 import { useEffect, useState } from "react";
 import StatusBox from "../../components/StatusBox";
+import InvoiceDetails from "../../components/InvoiceDetails";
 
 export default function ViewInvoice({invoiceDue, invoiceStatus}) {
 
@@ -12,29 +13,20 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
     const [city, setCity] = useState('')
     const [dateCreated, setDateCreated] = useState('')
     const [dateDue, setDateDue] = useState('')
-    const [details, setDetails] = useState([])
-    const [description, setDescription] = useState('')
-    const [quantity, setQuantity] = useState('')
-    const [rate, setRate] = useState('')
-    const [total, setTotal] = useState('')
     const [paidToDate, setPaidToDate] = useState('')
+    const [details, setDetails] = useState([])
 
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${invoiceid}`)
             .then(res => res.json())
             .then(invoice => {
-                console.log(invoice.data.details)
                 setClient(invoice.data.name)
                 setAddress(invoice.data.street_address)
                 setCity(invoice.data.city)
                 setDateCreated(invoice.data.created)
                 setDateDue(invoice.data.due)
-                setDescription(invoice.data.details.description)
-                {invoice.data.details.map(detail => {console.log(detail)
-                //     return (
-                //         <p key={invoice.id} invoiceDescription={data.description} invoiceQuantity={data.quantity} invoiceSubTotal={data.total} invoiceRate={data.rate} />
-                //     )
-                // })}
+                setPaidToDate(invoice.data.paid_to_date)
+                setDetails(invoice.data.details)
             })
             
 
@@ -67,16 +59,12 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
             </section>
 
             <section className="flex justify-self-stretch px-3 gap-4 border-b">
-                
-                <div className="flex flex-col">
-                    <p className="font-bold">Description</p>
-                    <p className="flex flex-col items-center px-16 bg-slate-50">
-            
-        </p>
-                    
-                </div>
+                    {details.map(detail => {
+                return (
+            <InvoiceDetails desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} />
+                )
+            })}
 
-            
             </section>
             
         </>
