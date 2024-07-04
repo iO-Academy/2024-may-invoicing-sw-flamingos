@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InvoiceItem from "../../components/InvoiceItem";
 import NewInvoiceDetails from "../../components/NewInvoiceDetails";
-import TotalInvoice from "../../components/TotalInvoice";
+import { Link } from "react-router-dom";
 
 export default function NewInvoicePage() {
 
@@ -21,11 +21,7 @@ export default function NewInvoicePage() {
 
     let megaTotal = list.reduce((carry, item) => carry + item.total, 0)
 
-    let newInvoice = {
-        client: clientId,
-        total: megaTotal,
-        details: list
-    }
+    
 
     function updateQuantity(index, quantitySum) {
         const listCopy = [...list]
@@ -52,11 +48,13 @@ export default function NewInvoicePage() {
         setClientId(clientIdNew)
     }
 
-    console.log(clientId)
-    console.log(newInvoice)
-    console.log(megaTotal)
-
     function createInvoice() {
+        let newInvoice = {
+            client: clientId,
+            total: megaTotal,
+            details: list
+        }
+        console.log(newInvoice)
         fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
             method: "POST",
             body: JSON.stringify(newInvoice),
@@ -87,9 +85,9 @@ export default function NewInvoicePage() {
                 <p className="pr-20">Total</p>
                 <p>£{list.reduce((carry, item) => carry + item.total, 0)}</p>
             </div>
-            <div>
-                <button onClick={createInvoice}>Create Invoice</button>
-                <button>Cancel Invoice</button>
+            <div className="flex flex-row jusify-end w-[1000px] p-3">
+                <button onClick={createInvoice} className="bg-green-600 p-2 text-white rounded">Create Invoice</button>
+                <Link to="/"><button className="bg-red-600 p-2 text-white rounded ml-3">Cancel Invoice</button></Link>
             </div>
         </div>
     )

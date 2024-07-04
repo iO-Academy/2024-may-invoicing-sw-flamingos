@@ -20,16 +20,6 @@ export default function NewInvoiceDetails({clientState}) {
             )
     }, [])
 
-    const [clientId, setClientId] = useState('')
-
-    function updateClient(clientSelect) {
-        setClientId(clientSelect)
-    }
-
-    function clientIdAgain() {
-        clientState(clientId)
-    }
-
     return (
         <div className="flex justify-around max-w-[850px] pb-2 mb-2 border-b border-gray-400">
             <div>
@@ -39,9 +29,9 @@ export default function NewInvoiceDetails({clientState}) {
                     <p>Bath</p>
                     <p>BA2 6AH</p>
                 </div>
-                <div onChange={clientIdAgain}>
+                <div>
                     <p>To</p>
-                    <DropdownClients clients={clients} clientState={updateClient} />
+                    <DropdownClients clients={clients} clientState={clientState} />
                 </div>
             </div>
             <div>
