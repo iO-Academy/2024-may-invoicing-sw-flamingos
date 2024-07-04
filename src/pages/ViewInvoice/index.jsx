@@ -15,7 +15,8 @@ export default function ViewInvoice() {
     const [dateDue, setDateDue] = useState('')
     const [paidToDate, setPaidToDate] = useState('')
     const [details, setDetails] = useState([])
-    const[status, setStatus] = useState('')
+    const [status, setStatus] = useState('')
+    const [invoiceTotal, setInvoiceTotal] = useState(0)
 
     useEffect(() => {
         fetch(`https://invoicing-api.dev.io-academy.uk/invoices/${invoiceid}`)
@@ -29,23 +30,20 @@ export default function ViewInvoice() {
                 setPaidToDate(invoice.data.paid_to_date)
                 setDetails(invoice.data.details)
                 setStatus(invoice.data.status_name)
+                setInvoiceTotal(invoice.data.invoice_total)
             })
+    }, [])
 
-
-    }, []
-    )
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     const splitCreatedDate = dateCreated.split('-')
     const month = splitCreatedDate[1] - 1
     const wordMonth = monthNames[month]
     const newCreatedDate = `${splitCreatedDate[2]} ${wordMonth} ${splitCreatedDate[0]}`
-    console.log(newCreatedDate)
 
     const splitDate = dateDue.split('-')
     const monthDue = splitDate[1] - 1
     const wordMonthDue = monthNames[monthDue]
     const newDueDate = `${splitDate[2]} ${wordMonthDue} ${splitDate[0]}`
-    console.log(newDueDate)
 
     return (
         <>
@@ -72,13 +70,31 @@ export default function ViewInvoice() {
                 </div>
             </section>
 
-            <section className="flex justify-self-stretch px-3 gap-4 border-b">
+            <section className="border-b">
+                <div className="grid grid-cols-4 p-2 gap-3">
+                    <p>Description</p>
+                    <p>Quantity</p>
+                    <p>Rate</p>
+                    <p>Total</p>
+                </div>
                 {details.map(detail => {
                     return (
-                        <InvoiceDetails key={invoiceid} desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} />
+                        <InvoiceDetails key={invoiceid} desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} paidToDate={paidToDate} />
+
                     )
                 })}
-
+                <div className="grid grid-cols-4 w-full">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div className="grid grid-rows-2">
+                    <p className="content-end">Total £{invoiceTotal}</p>
+                    <p className="content-end">Paid to date £{paidToDate}</p>
+                    </div>
+                    </div>
+                    <div className="grid grid-rows-1 row-span-full bg-orange-300">
+                    <p className="justify-self-end mr-6">Total due £{invoiceTotal - paidToDate}</p>
+                    </div>
             </section>
 
         </>

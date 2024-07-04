@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react"
 
-export default function InvoiceDetails({ desc, quant, cost, subTotal, paidToDate }) {
+export default function InvoiceDetails({ desc, quant, cost, subTotal, paidToDate, total }) {
+
 
 
     return (
         <div>
-            <div>
-                <p>Description</p>
-                <p>Quantity</p>
-                <p>Rate</p>
-                <p>Total</p>
+            <div className="grid grid-cols-4 gap-3 p-2">
+                <p>{desc}</p>
+                <p>{quant}</p>
+                <p>{cost}</p>
+                <p>{subTotal}</p>
             </div>
-            <div>
-                {desc}
-                {quant}
-                {cost}
-                {subTotal}
-            </div>
-            <p>Paid to date {paidToDate}</p>
         </div>
     )
 }
