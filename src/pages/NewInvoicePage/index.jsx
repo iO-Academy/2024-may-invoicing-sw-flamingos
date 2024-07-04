@@ -42,7 +42,7 @@ export default function NewInvoicePage() {
         listCopy[index].description = description
         setList(listCopy)
     }
-    function updateTotal(index, total){
+    function updateTotal(index, total) {
         const listCopy = [...list]
         listCopy[index].total = total
         setList(listCopy)
@@ -58,10 +58,21 @@ export default function NewInvoicePage() {
 
     return (
         <div>
-            <NewInvoiceDetails clientState={updateClient}/>
-            {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal}/>
-                </div>)}
-            <p>Total is: {list.reduce((carry, item) => carry + item.total, 0)}</p>
+            <NewInvoiceDetails clientState={updateClient} />
+            <div>
+                <div className="flex justify-around max-w-[850px] mx-2">
+                    <p>Description</p>
+                    <p>Quantity</p>
+                    <p>Rate</p>
+                    <p className="">Total</p>
+                </div>
+            {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal} />
+            </div>)}
+            </div>
+            <div className="bg-yellow-400 flex justify-end max-w-[850px] font-bold pr-5">
+                <p className="pr-20">Total</p>
+                <p>£{list.reduce((carry, item) => carry + item.total, 0)}</p>
+            </div>
         </div>
     )
 }
