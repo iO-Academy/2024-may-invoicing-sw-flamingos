@@ -19,10 +19,12 @@ export default function NewInvoicePage() {
         }
     }
 
+    let megaTotal = list.reduce((carry, item) => carry + item.total, 0)
+
     let newInvoice = {
-        client: '',
-        total: 0,
-        details: []
+        client: clientId,
+        total: megaTotal,
+        details: list
     }
 
     function updateQuantity(index, quantitySum) {
@@ -51,6 +53,8 @@ export default function NewInvoicePage() {
     }
 
     console.log(clientId)
+    console.log(newInvoice)
+    console.log(megaTotal)
 
     return (
         <div>
