@@ -33,9 +33,13 @@ export default function ViewInvoice({ invoiceDue, invoiceStatus }) {
     }, []
     )
 
+    const splitCreatedDate = dateCreated.split('-')
+    const newCreatedDate = `${splitCreatedDate[2]} ${splitCreatedDate[1]} ${splitCreatedDate[0]}`
+    console.log(newCreatedDate)
+
     const splitDate = dateDue.split('-')
-    const newDate = `${splitDate[2]} ${splitDate[1]} ${splitDate[0]}`
-    console.log(newDate)
+    const newDueDate = `${splitDate[2]} ${splitDate[1]} ${splitDate[0]}`
+    console.log(newDueDate)
 
     return (
         <>
