@@ -11,6 +11,8 @@ export default function NewInvoicePage() {
         setList([...list, { quantity: 0, rate: 0, total: 0, description: '' }]);
     };
 
+    const [clientId, setClientId] = useState('')
+
     const removeItem = () => {
         if (list.length > 1) {
             setList(list.splice(0, list.length - 1))
@@ -44,11 +46,15 @@ export default function NewInvoicePage() {
         setList(listCopy)
     }
 
-    console.log(list)
+    function updateClient(clientIdNew) {
+        setClientId(clientIdNew)
+    }
+
+    console.log(clientId)
 
     return (
         <div>
-            <NewInvoiceDetails />
+            <NewInvoiceDetails clientState={updateClient}/>
             {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal}/>
                 </div>)}
             <p>Total is: {list.reduce((carry, item) => carry + item.total, 0)}</p>

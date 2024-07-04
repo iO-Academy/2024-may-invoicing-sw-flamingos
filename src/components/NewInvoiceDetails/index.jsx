@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import DropdownClients from "../DropdownClients";
 
-export default function NewInvoiceDetails() {
+export default function NewInvoiceDetails({clientState}) {
 
     const now = new Date();
     const next30Days = now.getTime() + 30 * 24 * 60 * 60 * 1000;
@@ -20,6 +20,16 @@ export default function NewInvoiceDetails() {
             )
     }, [])
 
+    const [clientId, setClientId] = useState('')
+
+    function updateClient(clientSelect) {
+        setClientId(clientSelect)
+    }
+
+    function clientIdAgain() {
+        clientState(clientId)
+    }
+
     return (
         <div className="flex justify-around max-w-[850px] pb-2 mb-2 border-b border-gray-400">
             <div>
@@ -29,9 +39,9 @@ export default function NewInvoiceDetails() {
                     <p>Bath</p>
                     <p>BA2 6AH</p>
                 </div>
-                <div>
+                <div onChange={clientIdAgain}>
                     <p>To</p>
-                    <DropdownClients clients={clients} />
+                    <DropdownClients clients={clients} clientState={updateClient} />
                 </div>
             </div>
             <div>
