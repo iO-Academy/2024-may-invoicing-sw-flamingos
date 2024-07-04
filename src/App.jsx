@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="bg-slate-50">
+      <div>
         <Header />
         <Routes>
           <Route path="/" element={<Home />}/>

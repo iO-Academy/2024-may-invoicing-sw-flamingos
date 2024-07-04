@@ -9,6 +9,10 @@ export default function NewInvoicePage() {
 
     const [clientId, setClientId] = useState('')
 
+    const [message, setMessage] = useState('')
+
+    const [buttonDisplay, setButtonDisplay] = useState('')
+
     function addItem() {
         setList([...list, { quantity: 0, rate: 0, total: 0, description: '' }]);
     };
@@ -26,16 +30,19 @@ export default function NewInvoicePage() {
         listCopy[index].quantity = quantitySum
         setList(listCopy)
     }
+
     function updateRate(index, rateSum) {
         const listCopy = [...list]
         listCopy[index].rate = rateSum
         setList(listCopy)
     }
+
     function updateDesc(index, description) {
         const listCopy = [...list]
         listCopy[index].description = description
         setList(listCopy)
     }
+
     function updateTotal(index, total) {
         const listCopy = [...list]
         listCopy[index].total = total
@@ -59,19 +66,30 @@ export default function NewInvoicePage() {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             }
-        }).then(res => res.json()).then(data => {
-            function successMessage() {
-                
+        }).then(res => {
+            res.json()
+            if(res.status=== 200){
+                setMessage(`You have successfully added your invoice`)
+                setButtonDisplay(<Link to='/'><button className="bg-gray-600 p-2 text-white rounded ml-3">Home</button></Link>)
             }
+            else (
+                setMessage('Please complete all fields')
+            )
+        }).then(data => {
+            
         })
     }
 
+    function successMessage(e) {
+        e.preventDefault()
+    }
+
     return (
-        <div>
-            <form action="">
+        <div className="flex flex-col items-center">
+            <form onSubmit={successMessage}>
                 <NewInvoiceDetails clientState={updateClient} />
                 <div>
-                    <div className="grid grid-cols-5 max-w-[850px] mx-2 ml-5 border-b border-gray-400 mb-1 pb-1 font-bold">
+                    <div className="grid grid-cols-5 max-w-[850px] border-b border-gray-400 mb-1 pb-1 font-bold">
                         <p>Description</p>
                         <p>Quantity</p>
                         <p>Rate</p>
@@ -85,15 +103,16 @@ export default function NewInvoicePage() {
                     <p className="pr-20">Total</p>
                     <p>£{list.reduce((carry, item) => carry + item.total, 0)}</p>
                 </div>
-                <div className="flex flex-row jusify-end w-[1000px] p-3">
+                <div className="flex justify-end max-w-[850px] p-3">
                     <button type='Submit' onClick={createInvoice} className="bg-green-600 p-2 text-white rounded">Create Invoice</button>
                     <Link to="/"><button className="bg-red-600 p-2 text-white rounded ml-3">Cancel Invoice</button></Link>
                 </div>
-                <div hidden>
-                    <p>Success!</p>
-                </div>
             </form>
+            <div className="flex pb-2 max-w-[850px]">
+                <p className="pt-2">{message}</p>
+                <p>{buttonDisplay}</p>
+            </div>
         </div>
-        
+
     )
 }
