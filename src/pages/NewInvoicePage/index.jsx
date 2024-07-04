@@ -56,6 +56,17 @@ export default function NewInvoicePage() {
     console.log(newInvoice)
     console.log(megaTotal)
 
+    fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
+        method: "POST",
+        body: JSON.stringify(newInvoice),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      }).then(res => res.json()).then(data => {
+        console.log(data)
+      })
+
     return (
         <div>
             <NewInvoiceDetails clientState={updateClient} />
@@ -73,6 +84,10 @@ export default function NewInvoicePage() {
             <div className="bg-yellow-400 flex justify-end max-w-[850px] font-bold pr-5">
                 <p className="pr-20">Total</p>
                 <p>£{list.reduce((carry, item) => carry + item.total, 0)}</p>
+            </div>
+            <div>
+                <button>Create Invoice</button>
+                <button>Cancel Invoice</button>
             </div>
         </div>
     )
