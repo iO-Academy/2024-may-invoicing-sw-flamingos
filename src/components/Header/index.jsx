@@ -22,7 +22,7 @@ export default function Header() {
                 <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>
                 <p className="pb-3 text-slate-500" >There are {unpaid} unpaid invoices</p>
             </div>
-            <div className="flex items-end">
+            <div className="flex items-end mb-5">
                 <NewInvoiceButton />
             </div>
         </header>

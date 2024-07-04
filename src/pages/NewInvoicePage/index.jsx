@@ -60,11 +60,12 @@ export default function NewInvoicePage() {
         <div>
             <NewInvoiceDetails clientState={updateClient} />
             <div>
-                <div className="flex justify-around max-w-[850px] mx-2">
+                <div className="grid grid-cols-5 max-w-[850px] mx-2 ml-5 border-b border-gray-400 mb-1 pb-1 font-bold">
                     <p>Description</p>
                     <p>Quantity</p>
                     <p>Rate</p>
                     <p className="">Total</p>
+                    <p></p>
                 </div>
             {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal} />
             </div>)}
