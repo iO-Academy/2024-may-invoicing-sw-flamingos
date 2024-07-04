@@ -56,16 +56,18 @@ export default function NewInvoicePage() {
     console.log(newInvoice)
     console.log(megaTotal)
 
-    fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
-        method: "POST",
-        body: JSON.stringify(newInvoice),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      }).then(res => res.json()).then(data => {
-        console.log(data)
-      })
+    function createInvoice() {
+        fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
+            method: "POST",
+            body: JSON.stringify(newInvoice),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        }).then(res => res.json()).then(data => {
+            console.log(data)
+        })
+    }
 
     return (
         <div>
@@ -78,15 +80,15 @@ export default function NewInvoicePage() {
                     <p className="">Total</p>
                     <p></p>
                 </div>
-            {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal} />
-            </div>)}
+                {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal} />
+                </div>)}
             </div>
             <div className="bg-yellow-400 flex justify-end max-w-[850px] font-bold pr-5">
                 <p className="pr-20">Total</p>
                 <p>£{list.reduce((carry, item) => carry + item.total, 0)}</p>
             </div>
             <div>
-                <button>Create Invoice</button>
+                <button onClick={createInvoice}>Create Invoice</button>
                 <button>Cancel Invoice</button>
             </div>
         </div>
