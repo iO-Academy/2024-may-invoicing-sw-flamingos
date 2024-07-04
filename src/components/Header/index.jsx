@@ -17,10 +17,14 @@ export default function Header() {
 
     return (
 
-        <header className="bg-slate-50 p-4">
-            <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>
-            <p className="pb-3 text-slate-500" >There are {unpaid} unpaid invoices</p>
-            <NewInvoiceButton />
+        <header className="bg-slate-50 pt-4 pb-2 mb-2 flex justify-around border-b border-gray-400">
+            <div>
+                <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>
+                <p className="pb-3 text-slate-500" >There are {unpaid} unpaid invoices</p>
+            </div>
+            <div className="flex items-end mb-5">
+                <NewInvoiceButton />
+            </div>
         </header>
     )
 }

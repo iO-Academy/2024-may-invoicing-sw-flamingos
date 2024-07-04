@@ -8,12 +8,14 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/NewInvoice" element={<NewInvoicePage />}></Route>
-      </Routes>
-      <Footer />
+      <div className="bg-slate-50">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/NewInvoice" element={<NewInvoicePage />}></Route>
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 }
