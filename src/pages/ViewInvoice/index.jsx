@@ -32,13 +32,17 @@ export default function ViewInvoice({ invoiceDue, invoiceStatus }) {
 
     }, []
     )
-
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     const splitCreatedDate = dateCreated.split('-')
-    const newCreatedDate = `${splitCreatedDate[2]} ${splitCreatedDate[1]} ${splitCreatedDate[0]}`
+    const month = splitCreatedDate[1] - 1
+    const wordMonth = monthNames[month]
+    const newCreatedDate = `${splitCreatedDate[2]} ${wordMonth} ${splitCreatedDate[0]}`
     console.log(newCreatedDate)
 
     const splitDate = dateDue.split('-')
-    const newDueDate = `${splitDate[2]} ${splitDate[1]} ${splitDate[0]}`
+    const monthDue = splitDate[1] - 1
+    const wordMonthDue = monthNames[monthDue]
+    const newDueDate = `${splitDate[2]} ${wordMonthDue} ${splitDate[0]}`
     console.log(newDueDate)
 
     return (
@@ -60,16 +64,16 @@ export default function ViewInvoice({ invoiceDue, invoiceStatus }) {
                     <p>Status</p>
                     <StatusBox invoiceDue={invoiceDue} invoiceStatus={invoiceStatus} />
                     <p>Created</p>
-                    <p>{dateCreated}</p>
+                    <p>{newCreatedDate}</p>
                     <p>Due</p>
-                    <p>{dateDue}</p>
+                    <p>{newDueDate}</p>
                 </div>
             </section>
 
             <section className="flex justify-self-stretch px-3 gap-4 border-b">
                 {details.map(detail => {
                     return (
-                        <InvoiceDetails desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} />
+                        <InvoiceDetails key={client} desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} />
                     )
                 })}
 
