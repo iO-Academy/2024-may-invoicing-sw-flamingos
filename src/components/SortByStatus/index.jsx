@@ -1,5 +1,5 @@
 
-export default function SortByStatus() {
+export default function SortByStatus({statusVal}) {
 
     function filter() {
 
