@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import StatusBox from "../../components/StatusBox";
 import InvoiceDetails from "../../components/InvoiceDetails";
 
-export default function ViewInvoice({invoiceDue, invoiceStatus}) {
+export default function ViewInvoice({ invoiceDue, invoiceStatus }) {
 
     const { invoiceid } = useParams()
     const [invoiceNumber, setInvoiceNumber] = useState('')
@@ -28,10 +28,14 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
                 setPaidToDate(invoice.data.paid_to_date)
                 setDetails(invoice.data.details)
             })
-            
+
 
     }, []
-)
+    )
+
+    const splitDate = dateDue.split('-')
+    const newDate = `${splitDate[2]} ${splitDate[1]} ${splitDate[0]}`
+    console.log(newDate)
 
     return (
         <>
@@ -50,7 +54,7 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
 
                 <div className="flex flex-col">
                     <p>Status</p>
-                    <StatusBox invoiceDue={invoiceDue} invoiceStatus={invoiceStatus}/>
+                    <StatusBox invoiceDue={invoiceDue} invoiceStatus={invoiceStatus} />
                     <p>Created</p>
                     <p>{dateCreated}</p>
                     <p>Due</p>
@@ -59,14 +63,14 @@ export default function ViewInvoice({invoiceDue, invoiceStatus}) {
             </section>
 
             <section className="flex justify-self-stretch px-3 gap-4 border-b">
-                    {details.map(detail => {
-                return (
-            <InvoiceDetails desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} />
-                )
-            })}
+                {details.map(detail => {
+                    return (
+                        <InvoiceDetails desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} />
+                    )
+                })}
 
             </section>
-            
+
         </>
     )
 }
