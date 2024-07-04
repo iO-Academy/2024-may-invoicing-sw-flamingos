@@ -5,7 +5,6 @@ import TotalInvoice from "../../components/TotalInvoice";
 
 export default function NewInvoicePage() {
 
-    let index = 0;
     const [list, setList] = useState([{ quantity: 0, rate: 0, total: 0, description: '' }]);
 
     const addItem = () => {
@@ -24,12 +23,35 @@ export default function NewInvoicePage() {
         details: []
     }
 
+    function updateQuantity(index, quantitySum) {
+        const listCopy = [...list]
+        listCopy[index].quantity = quantitySum
+        setList(listCopy)
+    }
+    function updateRate(index, rateSum) {
+        const listCopy = [...list]
+        listCopy[index].rate = rateSum
+        setList(listCopy)
+    }
+    function updateDesc(index, description) {
+        const listCopy = [...list]
+        listCopy[index].description = description
+        setList(listCopy)
+    }
+    function updateTotal(index, total){
+        const listCopy = [...list]
+        listCopy[index].total = total
+        setList(listCopy)
+    }
+
+    console.log(list)
+
     return (
         <div>
             <NewInvoiceDetails />
-            {list.map(item => <div key={index++} className="relative"><InvoiceItem /><button onClick={addItem} className="m-3 text-4xl absolute right-5 bottom-12">+</button>
-                <button onClick={removeItem} className="m-3 text-4xl absolute right-6 bottom-0">-</button></div>)}
-            <TotalInvoice total='0' />
+            {list.map((item, index) => <div key={index}><InvoiceItem quantState={updateQuantity} rateState={updateRate} descState={updateDesc} index={index} addItem={addItem} removeItem={removeItem} totalState={updateTotal}/>
+                </div>)}
+            <p>Total is: {list.reduce((carry, item) => carry + item.total, 0)}</p>
         </div>
     )
 }
