@@ -38,6 +38,7 @@ export default function StatusBox({ invoiceStatus, invoiceDue }) {
 
     return (
         <div className="min-[760px]:mb-2">
+           
             {invoiceStatus === 'Paid' ? paid :
                 invoiceStatus === 'Cancelled' ? cancelled :
                     invoiceStatus === 'Pending' && dateDue < todayDateParsed ? overdue : pending
