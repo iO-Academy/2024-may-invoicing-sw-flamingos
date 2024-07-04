@@ -31,6 +31,7 @@ export default function ViewInvoice() {
                 setDetails(invoice.data.details)
                 setStatus(invoice.data.status_name)
                 setInvoiceTotal(invoice.data.invoice_total)
+                setInvoiceNumber(invoice.data.invoice_id)
             })
     }, [])
 
@@ -47,31 +48,34 @@ export default function ViewInvoice() {
 
     return (
         <>
-            <InvoiceTitle invoiceID='test' />
-            <section className="flex justify-self-stretch px-3 gap-4 border-b">
-                <div className="flex flex-col">
+            <InvoiceTitle invoiceID={invoiceNumber} />
+            <section className="flex justify-between p-3 border-b">
+                <div className="flex flex-col ml-5">
                     <p>From</p>
                     <p>SW Flamingos Ltd</p>
                     <p>The saltflats</p>
                     <p>Bolivia</p>
+                    <br/>
                     <p>To</p>
                     <p>{client}</p>
                     <p>{address}</p>
                     <p>{city}</p>
                 </div>
 
-                <div className="flex flex-col">
+                <div className="flex flex-col mr-5">
                     <p>Status</p>
                     <StatusBox invoiceDue={dateDue} invoiceStatus={status} />
+                    <br/>
                     <p>Created</p>
                     <p>{newCreatedDate}</p>
+                    <br/>
                     <p>Due</p>
                     <p>{newDueDate}</p>
                 </div>
             </section>
 
             <section className="border-b">
-                <div className="grid grid-cols-4 p-2 gap-3">
+                <div className="grid grid-cols-4 p-2 gap-3 border-b border-slate-500">
                     <p>Description</p>
                     <p>Quantity</p>
                     <p>Rate</p>
@@ -83,18 +87,16 @@ export default function ViewInvoice() {
 
                     )
                 })}
-                <div className="grid grid-cols-4 w-full">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div className="grid grid-rows-2">
-                    <p className="content-end">Total £{invoiceTotal}</p>
-                    <p className="content-end">Paid to date £{paidToDate}</p>
-                    </div>
+                
+                    <div className="grid grid-rows-1 row-span-full border-b border-slate-500">
+                    <p className="justify-self-end mr-6">Total       £{invoiceTotal}</p> </div>
+                    <div className="grid grid-rows-1 row-span-full">
+                        <p className="justify-self-end mr-6">Paid to date       £{paidToDate}</p>
                     </div>
                     <div className="grid grid-rows-1 row-span-full bg-orange-300">
-                    <p className="justify-self-end mr-6">Total due £{invoiceTotal - paidToDate}</p>
+                    <p className="justify-self-end mr-6">Total due      £{invoiceTotal - paidToDate}</p>
                     </div>
+                    <p>Payments due within 30 days.</p>
             </section>
 
         </>
