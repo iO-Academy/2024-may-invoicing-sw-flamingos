@@ -22,7 +22,8 @@ export default function StatusBox({ invoiceStatus, invoiceDue }) {
         }
         const todaysDateFormat = `${year}-${month}-${day}T00:00:00`
         setTodayDateParsed(Date.parse(todaysDateFormat))
-    }, [])
+    }, [invoiceDue])
+
 
     const paid = <ul className="border border-green-400 rounded-lg">
         <li className="py-1 px-3 text-green-400">&#x2022; {invoiceStatus}</li></ul>
@@ -38,7 +39,7 @@ export default function StatusBox({ invoiceStatus, invoiceDue }) {
 
     return (
         <div className="min-[760px]:mb-2">
-           
+
             {invoiceStatus === 'Paid' ? paid :
                 invoiceStatus === 'Cancelled' ? cancelled :
                     invoiceStatus === 'Pending' && dateDue < todayDateParsed ? overdue : pending
