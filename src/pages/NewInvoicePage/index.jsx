@@ -7,21 +7,19 @@ export default function NewInvoicePage() {
 
     const [list, setList] = useState([{ quantity: 0, rate: 0, total: 0, description: '' }]);
 
-    const addItem = () => {
+    const [clientId, setClientId] = useState('')
+
+    function addItem() {
         setList([...list, { quantity: 0, rate: 0, total: 0, description: '' }]);
     };
 
-    const [clientId, setClientId] = useState('')
-
-    const removeItem = () => {
+    function removeItem() {
         if (list.length > 1) {
             setList(list.splice(0, list.length - 1))
         }
     }
 
     let megaTotal = list.reduce((carry, item) => carry + item.total, 0)
-
-    
 
     function updateQuantity(index, quantitySum) {
         const listCopy = [...list]
@@ -54,7 +52,6 @@ export default function NewInvoicePage() {
             total: megaTotal,
             details: list
         }
-        console.log(newInvoice)
         fetch('https://invoicing-api.dev.io-academy.uk/invoices', {
             method: "POST",
             body: JSON.stringify(newInvoice),
@@ -63,7 +60,7 @@ export default function NewInvoicePage() {
                 "Accept": "application/json"
             }
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            
         })
     }
 
@@ -88,6 +85,9 @@ export default function NewInvoicePage() {
             <div className="flex flex-row jusify-end w-[1000px] p-3">
                 <button onClick={createInvoice} className="bg-green-600 p-2 text-white rounded">Create Invoice</button>
                 <Link to="/"><button className="bg-red-600 p-2 text-white rounded ml-3">Cancel Invoice</button></Link>
+            </div>
+            <div>
+                <p>Success!</p>
             </div>
         </div>
     )

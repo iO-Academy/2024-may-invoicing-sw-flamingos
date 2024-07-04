@@ -11,8 +11,8 @@ export default function App() {
       <div className="bg-slate-50">
         <Header />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/NewInvoice" element={<NewInvoicePage />}></Route>
+          <Route path="/" element={<Home />}/>
+          <Route path="/NewInvoice" element={<NewInvoicePage />}/>
         </Routes>
         <Footer />
       </div>
