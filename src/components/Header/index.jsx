@@ -17,7 +17,7 @@ export default function Header() {
     }, [])
 
     return (
-        <header className="bg-slate-50 pt-4 pb-2 mb-2 flex justify-around border-b border-gray-400">
+        <header className="bg-slate-50 pt-4 pb-2 mb-2 flex justify-around">
             <div>
                 <Link to="/" id="link fro header">
                     <h1 className="pb-3 text-3xl font-semibold">Invoices</h1>

@@ -21,7 +21,7 @@ export default function NewInvoiceDetails({clientState}) {
     }, [])
 
     return (
-        <div className="flex justify-around max-w-[850px] pb-2 mb-2 border-b border-gray-400">
+        <div className="flex justify-between max-w-[850px] pb-2 mb-2 border-b border-gray-400">
             <div>
                 <div>
                     <p>IO Academy</p>
@@ -34,7 +34,7 @@ export default function NewInvoiceDetails({clientState}) {
                     <DropdownClients clients={clients} clientState={clientState} />
                 </div>
             </div>
-            <div>
+            <div className="pr-20">
                 <div>
                     <p>Status</p>
                     <ul className="border border-yellow-400 rounded-lg"><li className="py-1 px-3 text-yellow-400">&#x2022; Pending</li></ul>
