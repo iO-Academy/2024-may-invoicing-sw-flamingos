@@ -21,7 +21,7 @@ export default function NewInvoiceDetails() {
     }, [])
 
     return (
-        <div className="flex">
+        <div className="flex justify-around max-w-[850px] pb-2 mb-2 border-b border-gray-400">
             <div>
                 <div>
                     <p>IO Academy</p>

@@ -1,8 +1,8 @@
-export default function TotalInvoice() {
+export default function TotalInvoice({total}) {
 
     return (
         <>
-            <p>Total is: </p>
+            <p>Total is: {total}</p>
         </>
     )
 }

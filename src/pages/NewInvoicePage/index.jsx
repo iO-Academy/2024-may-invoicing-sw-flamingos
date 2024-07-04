@@ -5,11 +5,11 @@ import TotalInvoice from "../../components/TotalInvoice";
 
 export default function NewInvoicePage() {
 
-    const [list, setList] = useState([0]);
-        //change list to be array of "details" objects rather than numbers.
+    let index = 0;
+    const [list, setList] = useState([{ quantity: 0, rate: 0, total: 0, description: '' }]);
 
     const addItem = () => {
-        setList([...list, list.length]);
+        setList([...list, { quantity: 0, rate: 0, total: 0, description: '' }]);
     };
 
     const removeItem = () => {
@@ -18,12 +18,18 @@ export default function NewInvoicePage() {
         }
     }
 
+    let newInvoice = {
+        client: '',
+        total: 0,
+        details: []
+    }
+
     return (
         <div>
             <NewInvoiceDetails />
-            {list.map(item => <div><InvoiceItem key={item} /><button onClick={addItem}>Plus</button>
-            <button onClick={removeItem}>Minus</button></div>)}
-            <TotalInvoice />
+            {list.map(item => <div key={index++} className="relative"><InvoiceItem /><button onClick={addItem} className="m-3 text-4xl absolute right-5 bottom-12">+</button>
+                <button onClick={removeItem} className="m-3 text-4xl absolute right-6 bottom-0">-</button></div>)}
+            <TotalInvoice total='0' />
         </div>
     )
 }
