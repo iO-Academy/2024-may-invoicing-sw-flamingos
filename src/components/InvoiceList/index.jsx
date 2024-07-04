@@ -19,10 +19,21 @@ export default function InvoiceList() {
             <SortByStatus />
             {invoices.map(invoice => {
                 if (invoice.status_name === 'Paid') {
-                    
                 return (
                     <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStat={invoice.status_name} invoiceDue={invoice.due} />
                 )}
+                //if (invoice.status_name === 'Pending') {
+                //    return (
+                //        <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStat={invoice.status_name} invoiceDue={invoice.due} />
+                //    )}
+                //    if (invoice.status_name === 'Overdue') {
+                //        return (
+                //            <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStat={invoice.status_name} invoiceDue={invoice.due} />
+                //        )}
+                //      if (invoice.status_name === 'Cancelled') {
+                //           return (
+                //                <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStat={invoice.status_name} invoiceDue={invoice.due} />
+                //            )}
             })}
         </div>
     )

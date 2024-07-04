@@ -1,19 +1,18 @@
 
 export default function SortByStatus() {
 
-
-    function filterPaid() {
+    function filter() {
 
     }
 
     return (
         <div>
             <select name="Sort" id="">
-                <option onChange={''} value="Default">Filter by Status</option>
-                <option onClick={''} value="Paid">Filter by Paid</option>
-                <option onClick={''} value="Pending">Filter by Pending</option>
-                <option onClick={''} value="Overdue">Filter by Overdue</option>
-                <option onClick={''} value="Cancelled">Filter by Cancelled</option> 
+                <option onChange={filter} value="Default">Filter by Status</option>
+                <option value="Paid">Filter by Paid</option>
+                <option value="Pending">Filter by Pending</option>
+                <option value="Overdue">Filter by Overdue</option>
+                <option value="Cancelled">Filter by Cancelled</option> 
             </select>
         </div>
     )
