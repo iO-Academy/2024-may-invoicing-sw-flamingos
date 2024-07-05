@@ -60,7 +60,7 @@ export default function InvoiceList() {
             <div className="pr-20">
                 {invoices.map(invoice => {
                     return (
-                        <InvoiceSummary key={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStat={invoice.status_name} invoiceDue={invoice.due} />
+                        <InvoiceSummary key={invoice.invoice_id} id={invoice.id} invoiceID={invoice.invoice_id} invoiceTotal={invoice.invoice_total} invoiceName={invoice.name} invoiceStat={invoice.status_name} invoiceDue={invoice.due} />
                     )
                 })}
             </div>
