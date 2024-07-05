@@ -24,10 +24,10 @@ export default function InvoiceList() {
             <div className="flex mb-5">
                 <select onChange={filterStatus} className="bg-slate-50 text-blue-950 text-sm font-bold">
                     <option value="NaN">Filter by Status</option>
-                    <option value="1">Filter by Paid</option>
-                    <option value="2">Filter by Pending</option>
-                    <option value="3">Filter by Cancelled</option>
-                    <option value="NaN">No Filter</option>
+                    <option value="1">Paid</option>
+                    <option value="2">Pending</option>
+                    <option value="3">Cancelled</option>
+                    <option value="NaN">All</option>
                 </select>
             </div>
             <div className="pr-20">
