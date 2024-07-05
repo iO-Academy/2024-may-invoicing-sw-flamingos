@@ -3,6 +3,7 @@ import InvoiceTitle from "../../components/InvoiceTitle";
 import { useEffect, useState } from "react";
 import StatusBox from "../../components/StatusBox";
 import InvoiceDetails from "../../components/InvoiceDetails";
+import StatusBar from "../../components/StatusBar";
 
 export default function ViewInvoice() {
 
@@ -30,11 +31,11 @@ export default function ViewInvoice() {
                 setPaidToDate(invoice.data.paid_to_date)
                 setDetails(invoice.data.details)
                 setStatus(invoice.data.status_name)
-                setInvoiceTotal(invoice.data.invoice_total)
+                setInvoiceTotal(parseInt(invoice.data.invoice_total))
                 setInvoiceNumber(invoice.data.invoice_id)
             })
     }, [])
-
+console.log(invoiceTotal)
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     const splitCreatedDate = dateCreated.split('-')
     const month = splitCreatedDate[1] - 1
@@ -85,7 +86,6 @@ export default function ViewInvoice() {
                     {details.map(detail => {
                         return (
                             <InvoiceDetails key={invoiceid} desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} paidToDate={paidToDate} />
-
                         )
                     })}
 
@@ -96,14 +96,10 @@ export default function ViewInvoice() {
                     </div>
                     <div className="grid grid-cols-[4fr_1fr_1fr]">
                         <p></p>
-                        <p>Paid to date</p>
+                        <p className="pr-2">Paid to date</p>
                         <p className="mr-6 font-bold">£{paidToDate}</p>
                     </div>
-                    <div className="grid grid-cols-[4fr_1fr_1fr] bg-orange-300">
-                        <p></p>
-                        <p className="font-bold">Total due</p>
-                        <p className="mr-6 font-bold">£{invoiceTotal - paidToDate}</p>
-                    </div>
+                    <StatusBar invoiceDue={dateDue} invoiceStatus={status} invoiceTotal={invoiceTotal} paidToDate={paidToDate}/>
                     <p>Payments due within 30 days.</p>
                 </section>
             </div>
