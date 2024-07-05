@@ -50,7 +50,7 @@ export default function ViewInvoice() {
         <div className="flex flex-col items-center">
             <div className="p-3 ml-5 min-[760px]:max-w-[850px] border-b">
                 <InvoiceTitle invoiceID={invoiceNumber} />
-                <div className="grid grid-cols-2 p-3 border-b">
+                <div className="flex justify-between p-3 border-b">
                     <div className="flex flex-col ml-5">
                         <p>From</p>
                         <p>SW Flamingos Ltd</p>
@@ -74,39 +74,39 @@ export default function ViewInvoice() {
                         <p>{newDueDate}</p>
                     </div>
                 </div>
+
+                <section className="p-3 ml-5 min-[760px]:max-w-[850px] border-b">
+                    <div className="grid grid-cols-[3fr_1fr_1fr_1fr] p-2 font-bold gap-3 border-b border-slate-500">
+                        <p>Description</p>
+                        <p>Quantity</p>
+                        <p>Rate</p>
+                        <p>Total</p>
+                    </div>
+                    {details.map(detail => {
+                        return (
+                            <InvoiceDetails key={invoiceid} desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} paidToDate={paidToDate} />
+
+                        )
+                    })}
+
+                    <div className="grid grid-cols-[4fr_1fr_1fr] border-b border-slate-500">
+                        <p></p>
+                        <p>Total</p>
+                        <p className="mr-6 font-bold">£{invoiceTotal}</p>
+                    </div>
+                    <div className="grid grid-cols-[4fr_1fr_1fr]">
+                        <p></p>
+                        <p>Paid to date</p>
+                        <p className="mr-6 font-bold">£{paidToDate}</p>
+                    </div>
+                    <div className="grid grid-cols-[4fr_1fr_1fr] bg-orange-300">
+                        <p></p>
+                        <p className="font-bold">Total due</p>
+                        <p className="mr-6 font-bold">£{invoiceTotal - paidToDate}</p>
+                    </div>
+                    <p>Payments due within 30 days.</p>
+                </section>
             </div>
-
-            <section className="p-3 ml-5 min-[760px]:max-w-[850px] border-b">
-                <div className="grid grid-cols-[3fr_1fr_1fr_1fr] p-2 font-bold gap-3 border-b border-slate-500">
-                    <p>Description</p>
-                    <p>Quantity</p>
-                    <p>Rate</p>
-                    <p>Total</p>
-                </div>
-                {details.map(detail => {
-                    return (
-                        <InvoiceDetails key={invoiceid} desc={detail.description} quant={detail.quantity} cost={detail.rate} subTotal={detail.total} paidToDate={paidToDate} />
-
-                    )
-                })}
-
-                <div className="grid grid-cols-[4fr_1fr_1fr] border-b border-slate-500">
-                    <p></p>
-                    <p>Total</p>
-                    <p className="mr-6 font-bold">£{invoiceTotal}</p>
-                </div>
-                <div className="grid grid-cols-[4fr_1fr_1fr]">
-                    <p></p>
-                    <p>Paid to date</p>
-                    <p className="mr-6 font-bold">£{paidToDate}</p>
-                </div>
-                <div className="grid grid-cols-[4fr_1fr_1fr] bg-orange-300">
-                    <p></p>
-                    <p className="font-bold">Total due</p>
-                    <p className="mr-6 font-bold">£{invoiceTotal - paidToDate}</p>
-                </div>
-                <p>Payments due within 30 days.</p>
-            </section>
 
         </div>
     )
