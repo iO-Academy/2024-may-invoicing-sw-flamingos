@@ -6,7 +6,7 @@ export default function InvoiceDetails({ desc, quant, cost, subTotal, paidToDate
 
     return (
         <div>
-            <div className="grid grid-cols-4 gap-3 p-2 border-b border-slate-500">
+            <div className="grid grid-cols-[3fr_1fr_1fr_1fr] gap-3 p-2 border-b border-slate-500">
                 <p>{desc}</p>
                 <p>{quant}</p>
                 <p>{cost}</p>

@@ -47,35 +47,37 @@ export default function ViewInvoice() {
     const newDueDate = `${splitDate[2]} ${wordMonthDue} ${splitDate[0]}`
 
     return (
-        <>
-            <InvoiceTitle invoiceID={invoiceNumber} />
-            <section className="flex justify-between p-3 border-b">
-                <div className="flex flex-col ml-5">
-                    <p>From</p>
-                    <p>SW Flamingos Ltd</p>
-                    <p>The saltflats</p>
-                    <p>Bolivia</p>
-                    <br/>
-                    <p>To</p>
-                    <p>{client}</p>
-                    <p>{address}</p>
-                    <p>{city}</p>
-                </div>
+        <div className="flex flex-col min-[760px]:max-w-[850px]">
+            <div className="p-3 ml-5 min-[760px]:max-w-[850px] border-b">
+                <InvoiceTitle invoiceID={invoiceNumber} />
+                <div className="grid grid-cols-2 p-3 border-b">
+                    <div className="flex flex-col ml-5">
+                        <p>From</p>
+                        <p>SW Flamingos Ltd</p>
+                        <p>The saltflats</p>
+                        <p>Bolivia</p>
+                        <br />
+                        <p>To</p>
+                        <p>{client}</p>
+                        <p>{address}</p>
+                        <p>{city}</p>
+                    </div>
 
-                <div className="flex flex-col mr-5">
-                    <p>Status</p>
-                    <StatusBox invoiceDue={dateDue} invoiceStatus={status} />
-                    <br/>
-                    <p>Created</p>
-                    <p>{newCreatedDate}</p>
-                    <br/>
-                    <p>Due</p>
-                    <p>{newDueDate}</p>
+                    <div className="flex flex-col mr-5">
+                        <p>Status</p>
+                        <StatusBox invoiceDue={dateDue} invoiceStatus={status} />
+                        <br />
+                        <p>Created</p>
+                        <p>{newCreatedDate}</p>
+                        <br />
+                        <p>Due</p>
+                        <p>{newDueDate}</p>
+                    </div>
                 </div>
-            </section>
+            </div>
 
-            <section className="border-b">
-                <div className="grid grid-cols-4 p-2 gap-3 border-b border-slate-500">
+            <section className="p-3 ml-5 min-[760px]:max-w-[850px] border-b">
+                <div className="grid grid-cols-[3fr_1fr_1fr_1fr] p-2 font-bold gap-3 border-b border-slate-500">
                     <p>Description</p>
                     <p>Quantity</p>
                     <p>Rate</p>
@@ -87,18 +89,25 @@ export default function ViewInvoice() {
 
                     )
                 })}
-                
-                    <div className="grid grid-rows-1 row-span-full border-b border-slate-500">
-                    <p className="justify-self-end mr-6">Total       £{invoiceTotal}</p> </div>
-                    <div className="grid grid-rows-1 row-span-full">
-                        <p className="justify-self-end mr-6">Paid to date       £{paidToDate}</p>
-                    </div>
-                    <div className="grid grid-rows-1 row-span-full bg-orange-300">
-                    <p className="justify-self-end mr-6">Total due      £{invoiceTotal - paidToDate}</p>
-                    </div>
-                    <p>Payments due within 30 days.</p>
+
+                <div className="grid grid-cols-[4fr_1fr_1fr] border-b border-slate-500">
+                    <p></p>
+                    <p>Total</p>
+                    <p className="mr-6 font-bold">£{invoiceTotal}</p>
+                </div>
+                <div className="grid grid-cols-[4fr_1fr_1fr]">
+                    <p></p>
+                    <p>Paid to date</p>
+                    <p className="mr-6 font-bold">£{paidToDate}</p>
+                </div>
+                <div className="grid grid-cols-[4fr_1fr_1fr] bg-orange-300">
+                    <p></p>
+                    <p className="font-bold">Total due</p>
+                    <p className="mr-6 font-bold">£{invoiceTotal - paidToDate}</p>
+                </div>
+                <p>Payments due within 30 days.</p>
             </section>
 
-        </>
+        </div>
     )
 }
