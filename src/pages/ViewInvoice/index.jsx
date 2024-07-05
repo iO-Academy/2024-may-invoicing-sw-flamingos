@@ -52,24 +52,24 @@ export default function ViewInvoice() {
                 <InvoiceTitle invoiceID={invoiceNumber} />
                 <div className="flex justify-between p-3 border-b">
                     <div className="flex flex-col ml-5">
-                        <p>From</p>
+                        <p className="font-bold">From</p>
                         <p>SW Flamingos Ltd</p>
                         <p>The saltflats</p>
                         <p>Bolivia</p>
                         <br />
-                        <p>To</p>
+                        <p className="font-bold">To</p>
                         <p>{client}</p>
                         <p>{address}</p>
                         <p>{city}</p>
                     </div>
                     <div className="flex flex-col mr-5">
-                        <p>Status</p>
+                        <p className="font-bold">Status</p>
                         <StatusBox invoiceDue={dateDue} invoiceStatus={status} />
                         <br />
-                        <p>Created</p>
+                        <p className="font-bold">Created</p>
                         <p>{newCreatedDate}</p>
                         <br />
-                        <p>Due</p>
+                        <p className="font-bold">Due</p>
                         <p>{newDueDate}</p>
                     </div>
                 </div>
