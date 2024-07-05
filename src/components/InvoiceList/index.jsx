@@ -21,7 +21,7 @@ export default function InvoiceList() {
 
     return (
         <div className="flex flex-col items-center bg-slate-50">
-            <div>
+            <div className="flex">
                 <select onChange={filterStatus}>
                     <option value="NaN">Filter by Status</option>
                     <option value="1">Filter by Paid</option>
