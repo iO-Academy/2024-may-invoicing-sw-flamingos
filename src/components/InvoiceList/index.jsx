@@ -21,8 +21,8 @@ export default function InvoiceList() {
 
     return (
         <div className="flex flex-col items-center bg-slate-50">
-            <div className="flex">
-                <select onChange={filterStatus}>
+            <div className="flex mb-5">
+                <select onChange={filterStatus} className="bg-slate-50 text-blue-950 text-sm font-bold">
                     <option value="NaN">Filter by Status</option>
                     <option value="1">Filter by Paid</option>
                     <option value="2">Filter by Pending</option>
