@@ -85,11 +85,11 @@ export default function NewInvoicePage() {
     }
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center px-5">
             <form onSubmit={successMessage} className=" bg-white p-2">
                 <NewInvoiceDetails clientState={updateClient} />
                 <div>
-                    <div className="grid grid-cols-5 max-w-[850px] border-b border-gray-400 mb-1 pb-1 font-bold">
+                    <div className="grid grid-cols-5 max-w-[850px] border-b border-gray-400 mb-1 pb-1 font-bold pl-4">
                         <p>Description</p>
                         <p>Quantity</p>
                         <p>Rate</p>
