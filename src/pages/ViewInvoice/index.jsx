@@ -47,7 +47,7 @@ export default function ViewInvoice() {
     const newDueDate = `${splitDate[2]} ${wordMonthDue} ${splitDate[0]}`
 
     return (
-        <div className="flex flex-col min-[760px]:max-w-[850px]">
+        <div className="flex flex-col items-center">
             <div className="p-3 ml-5 min-[760px]:max-w-[850px] border-b">
                 <InvoiceTitle invoiceID={invoiceNumber} />
                 <div className="grid grid-cols-2 p-3 border-b">
