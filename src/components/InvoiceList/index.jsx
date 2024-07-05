@@ -8,8 +8,8 @@ export default function InvoiceList() {
 
     useEffect(() => {
         let url = 'https://invoicing-api.dev.io-academy.uk/invoices'
-        if (filterInvoices !== 0) {
-            url = `https://invoicing-api.dev.io-academy.uk/invoices?status=${filterInvoices}`
+        if (filterInvoices !== 0 ) {
+            url += `?status=${filterInvoices}`
         }
         fetch(url)
             .then(res => res.json())
