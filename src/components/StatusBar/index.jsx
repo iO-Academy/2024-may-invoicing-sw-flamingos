@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function StatusBar({ invoiceStatus, invoiceDue, invoiceTotal, paidToDate}) {
+export default function StatusBar({ invoiceStatus, invoiceDue, invoiceTotal, paidToDate }) {
 
     const [todayDateParsed, setTodayDateParsed] = useState(0)
     const [dateDue, setDateDue] = useState(0)
@@ -25,14 +25,12 @@ export default function StatusBar({ invoiceStatus, invoiceDue, invoiceTotal, pai
 
     const totalDue = invoiceTotal - paidToDate
     const finalDue = parseFloat(totalDue).toFixed(2)
-   
+
     const paid = <div className="grid grid-cols-[4fr_1fr_1fr] bg-green-400 ">
         <p></p>
         <p className="font-bold">Total due</p>
         <p className="mr-6 font-bold">£{finalDue}</p>
     </div>
-
-
 
     const cancelled = <div className="grid grid-cols-[4fr_1fr_1fr] bg-slate-400">
         <p></p>
