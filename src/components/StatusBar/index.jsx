@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function StatusBox({ invoiceStatus, invoiceDue }) {
+export default function StatusBar({ invoiceStatus, invoiceDue, invoiceTotal, paidToDate }) {
 
     const [todayDateParsed, setTodayDateParsed] = useState(0)
     const [dateDue, setDateDue] = useState(0)
@@ -23,20 +23,36 @@ export default function StatusBox({ invoiceStatus, invoiceDue }) {
         setTodayDateParsed(Date.parse(todaysDateFormat))
     }, [invoiceDue])
 
-    const paid = <ul className="border border-green-400 rounded-lg">
-        <li className="py-1 px-3 text-green-400">&#x2022; {invoiceStatus}</li></ul>
+    const totalDue = invoiceTotal - paidToDate
+    const finalDue = parseFloat(totalDue).toFixed(2)
 
-    const cancelled = <ul className="border border-slate-400 rounded-lg">
-        <li className="py-1 px-3 text-slate-400">&#x2022; {invoiceStatus}</li></ul>
+    const paid = <div className="grid grid-cols-[4fr_1fr_1fr] bg-green-400 ">
+        <p></p>
+        <p className="font-bold">Total due</p>
+        <p className="mr-6 font-bold">£{finalDue}</p>
+    </div>
 
-    const overdue = <ul className="border border-red-400 rounded-lg">
-        <li className="py-1 px-3 text-red-400">&#x2022; Overdue</li></ul>
+    const cancelled = <div className="grid grid-cols-[4fr_1fr_1fr] bg-slate-400">
+        <p></p>
+        <p className="font-bold">Total due</p>
+        <p className="mr-6 font-bold">£{finalDue}</p>
+    </div>
 
-    const pending = <ul className="border border-yellow-400 rounded-lg">
-        <li className="py-1 px-3 text-yellow-400">&#x2022; {invoiceStatus}</li></ul>
+    const overdue = <div className="grid grid-cols-[4fr_1fr_1fr] bg-red-400 ">
+        <p></p>
+        <p className="font-bold">Total due</p>
+        <p className="mr-6 font-bold">£{finalDue}</p>
+    </div>
+
+    const pending = <div className="grid grid-cols-[4fr_1fr_1fr] bg-orange-400 ">
+        <p></p>
+        <p className="font-bold">Total due</p>
+        <p className="mr-6 font-bold">£{finalDue}</p>
+    </div>
 
     return (
         <div className="min-[760px]:mb-2">
+
             {invoiceStatus === 'Paid' ? paid :
                 invoiceStatus === 'Cancelled' ? cancelled :
                     invoiceStatus === 'Pending' && dateDue < todayDateParsed ? overdue : pending
